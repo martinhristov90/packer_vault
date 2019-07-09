@@ -16,12 +16,19 @@ rm /tmp/${P}.zip
 set -o xtrace
 
 #Enable autocomplete
+echo "Setting up autocomplete"
 
 vault -autocomplete-install
 complete -C /usr/local/bin/vault vault
 
 # Enable mlock() without being root, it prevents memory pages to be swapped to the disk.
+echo "Enabling mlock() without being root, it prevents memory pages to be swapped to the disk."
 setcap cap_ipc_lock=+ep /usr/local/bin/vault
+
+echo "Setting up vault user"
+mkdir -p /etc/vault.d
+
+chown -R vault:vault /etc/vault.d
 
 sudo useradd --system --home /etc/vault.d --shell /bin/false vault
 
@@ -65,13 +72,12 @@ EOF
 
 # Conf dir and simple startup config
 
-mkdir -p /etc/vault.d
 
 touch /etc/vault.d/vault.hcl
 
 cat << EOF > /etc/vault.d/vault.hcl
 backend "file" {
-path = "/home/vagrant/vaultStorage"
+path = "/vaultDataDir"
 }
 listener "tcp" {
 address = "0.0.0.0:8200"
@@ -81,6 +87,14 @@ tls_disable = 1
 # Enable UI
 ui = true
 EOF
+
+# Create data dir for Vault
+
+echo "Creating date dir for Vault"
+
+mkdir -p /vaultDataDir
+
+chown vault:vault /vaultDataDir
 
 # Let systemd know about its new UNIT file, and  us it.
 systemctl daemon-reload
