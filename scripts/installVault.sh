@@ -67,9 +67,9 @@ EOF
 
 mkdir -p /etc/vault.d
 
-touch /etc/vault.d/vault.cfg
+touch /etc/vault.d/vault.hcl
 
-cat << EOF > /etc/vault.d/vault.cfg
+cat << EOF > /etc/vault.d/vault.hcl
 backend "file" {
 path = "/home/vagrant/vaultStorage"
 }
