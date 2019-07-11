@@ -80,6 +80,10 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "script": "scripts/installVault.sh",
       "type": "shell"
+    },
+    {
+      "type": "inspec",
+      "profile": "https://github.com/martinhristov90/inspecVault.git"
     }
   ],
   "post-processors": [
@@ -96,6 +100,8 @@
       "access_token": "{{user `cloud_token`}}",
       "version": "{{user `version`}}"
     }
+
+
     ]
   ]
 }
