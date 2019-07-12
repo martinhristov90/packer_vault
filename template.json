@@ -100,8 +100,6 @@
       "access_token": "{{user `cloud_token`}}",
       "version": "{{user `version`}}"
     }
-
-
     ]
   ]
 }

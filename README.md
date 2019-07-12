@@ -1,4 +1,4 @@
-### This repository provides Hashicorp Packer setup to build a Vagrant box with Vault installed, integrate it with Systemd and finally to upload it to VagrantCloud.
+### This repository provides Hashicorp Packer setup to build a Vagrant box with HashiCorp Vault installed, integrate it with Systemd,test it with Inspec and finally to upload it to VagrantCloud.
 
 #### How to use it :
 
@@ -12,3 +12,4 @@
 #### N.B : 
 - Before starting the build process create an empty box in VagrantCloud with name `vault`, for example `YOUR_VAGRANTCLOUD_NAME/vault`, this is a workaround, otherwise you are going to get an error in uploading the box to VagrantCloud.
 - The machine automatically exposes tcp/udp ports 8200 and 8201 to your host machine.
+- Inspec profile can be found in [this](https://github.com/martinhristov90/inspecVault) repository.
