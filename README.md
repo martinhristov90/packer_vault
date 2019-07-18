@@ -1,5 +1,7 @@
 ### This repository provides Hashicorp Packer setup to build a Vagrant box with HashiCorp Vault installed, integrate it with Systemd,test it with Inspec and finally to upload it to VagrantCloud.
 
+![alt diagram](https://www.lucidchart.com/publicSegments/view/54c1075e-1d8d-4b9e-a6d8-9e207a9e2c97/image.png)
+
 #### How to use it :
 
 - Execute `git clone git@github.com:martinhristov90/packerVault.git`.
