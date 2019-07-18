@@ -89,19 +89,19 @@
   ],
   "post-processors": [
     [
-    {
-      "type": "vagrant",
-      "keep_input_artifact": true,
-      "output": "{{.BuildName}}.box",
-      "vagrantfile_template": "vagrantFile.template"
-    },
-    {
-      "type": "vagrant-cloud",
-      "box_tag": "YOUR_VAGRANTCLOUD_NAME/vault",
-      "access_token": "{{user `cloud_token`}}",
-      "version": "{{user `version`}}",
-      "version_description": "{{user `version_description`}}"
-    }
+      {
+        "type": "vagrant",
+        "keep_input_artifact": true,
+        "output": "{{.BuildName}}.box",
+        "vagrantfile_template": "vagrantFile.template"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "YOUR_VAGRANTCLOUD_NAME/vault",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `version`}}",
+        "version_description": "{{user `version_description`}}"
+      }
     ]
   ]
 }
