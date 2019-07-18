@@ -27,14 +27,11 @@ setcap cap_ipc_lock=+ep /usr/local/bin/vault
 
 echo "Setting up vault user"
 mkdir -p /etc/vault.d
-
-chown -R vault:vault /etc/vault.d
-
 sudo useradd --system --home /etc/vault.d --shell /bin/false vault
 
+# Unit file for Vault
 touch /etc/systemd/system/vault.service
 
-# Unit file for Vault
 cat << EOF > /etc/systemd/system/vault.service
 [Unit]
 Description="HashiCorp Vault - A tool for managing secrets"
@@ -71,8 +68,6 @@ WantedBy=multi-user.target
 EOF
 
 # Conf dir and simple startup config
-
-
 touch /etc/vault.d/vault.hcl
 
 cat << EOF > /etc/vault.d/vault.hcl
@@ -88,13 +83,16 @@ tls_disable = 1
 ui = true
 EOF
 
-# Create data dir for Vault
+# Vault user owns the files inside this dir.
+chown -R vault:vault /etc/vault.d
+chmod 640 /etc/vault.d/vault.hcl
 
+# Create data dir for Vault
 echo "Creating date dir for Vault"
 
 mkdir -p /vaultDataDir
-
 chown vault:vault /vaultDataDir
+
 
 # Let systemd know about its new UNIT file, and  us it.
 systemctl daemon-reload

@@ -14,7 +14,8 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "cloud_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
-    "version": "1.0.{{timestamp}}"
+    "version": "1.0.{{timestamp}}",
+    "version_description": "Ubuntu 16.04.02 LTS with HashiCorp Vault installed as Systemd service,running with simple conf"
   },
   "push": {
     "name": "{{user `name`}}",
@@ -98,7 +99,8 @@
       "type": "vagrant-cloud",
       "box_tag": "YOUR_VAGRANTCLOUD_NAME/vault",
       "access_token": "{{user `cloud_token`}}",
-      "version": "{{user `version`}}"
+      "version": "{{user `version`}}",
+      "version_description": "{{user `version_description`}}"
     }
     ]
   ]
